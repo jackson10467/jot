@@ -2637,3 +2637,877 @@ Completed 200 OK in 25ms (Views: 10.0ms | ActiveRecord: 9.4ms | Allocations: 555
   [1m[36mJot Load (0.4ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1 LIMIT $2[0m  [["category_id", 2], ["LIMIT", 11]]
   [1m[36mJot Load (0.5ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1 LIMIT $2[0m  [["category_id", 1], ["LIMIT", 11]]
   [1m[36mJot Load (1.0ms)[0m  [1m[34mSELECT "jots".* FROM "jots" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:21:56 -0400
+Processing by JotsController#index as */*
+  Parameters: {"name"=>"Class_update", "user_id"=>"5", "category_id"=>"2", "jot"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (17.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.5ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 60ms (Views: 4.3ms | ActiveRecord: 45.1ms | Allocations: 12023)
+
+
+Started POST "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:23:11 -0400
+Processing by JotsController#create as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:57:in `jot_params'
+  [1m[35m (9.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+Completed 200 OK in 73ms (Views: 1.1ms | ActiveRecord: 21.0ms | Allocations: 8559)
+
+
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:23:16 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (14.5ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 23ms (Views: 1.4ms | ActiveRecord: 16.4ms | Allocations: 2951)
+
+
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:23:22 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.7ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 1.4ms | ActiveRecord: 2.7ms | Allocations: 2951)
+
+
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:23:23 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (1.5ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 1.7ms | ActiveRecord: 2.8ms | Allocations: 2951)
+
+
+Started POST "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:23:29 -0400
+Processing by JotsController#create as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:57:in `jot_params'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 4597)
+
+
+Started POST "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:24:20 -0400
+Processing by JotsController#create as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:57:in `jot_params'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mJot Create (6.2ms)[0m  [1m[32mINSERT INTO "jots" ("title", "note", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "First"], ["note", "Here is a note that I wrote"], ["category_id", 2], ["created_at", "2020-05-12 18:24:20.752351"], ["updated_at", "2020-05-12 18:24:20.752351"]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+Completed 200 OK in 101ms (Views: 0.6ms | ActiveRecord: 42.5ms | Allocations: 18328)
+
+
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:24:27 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (11.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.9ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 26ms (Views: 6.5ms | ActiveRecord: 13.2ms | Allocations: 5476)
+
+
+Started GET "/users/5/categorys/2" for ::1 at 2020-05-12 14:24:55 -0400
+Processing by CategorysController#show as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "id"=>"2", "category"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:11:in `show'
+  [1m[36mCategory Load (1.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:13:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:14:in `show'
+Completed 200 OK in 9ms (Views: 2.0ms | ActiveRecord: 2.5ms | Allocations: 3231)
+
+
+Started GET "/users/5/categorys/" for ::1 at 2020-05-12 14:25:02 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (7.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 5]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 20ms (Views: 7.4ms | ActiveRecord: 9.1ms | Allocations: 5557)
+
+
+Started GET "/users/5/categorys/3/jots" for ::1 at 2020-05-12 14:25:14 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"First", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"3", "jot"=>{"title"=>"First", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (2.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.6ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 16ms (Views: 1.6ms | ActiveRecord: 7.8ms | Allocations: 2951)
+
+
+Started POST "/users/5/categorys/3/jots" for ::1 at 2020-05-12 14:25:24 -0400
+Processing by JotsController#create as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"3", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:57:in `jot_params'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mCategory Load (1.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mJot Create (2.7ms)[0m  [1m[32mINSERT INTO "jots" ("title", "note", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Second"], ["note", "Here is a note that I wrote"], ["category_id", 3], ["created_at", "2020-05-12 18:25:24.626175"], ["updated_at", "2020-05-12 18:25:24.626175"]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+Completed 200 OK in 21ms (Views: 0.5ms | ActiveRecord: 10.1ms | Allocations: 5114)
+
+
+Started GET "/users/5/categorys/3/jots" for ::1 at 2020-05-12 14:25:43 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"3", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.6ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 15ms (Views: 6.0ms | ActiveRecord: 3.4ms | Allocations: 5233)
+
+
+Started GET "/users/5/categorys/3/jots/2" for ::1 at 2020-05-12 14:27:48 -0400
+Processing by JotsController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"3", "id"=>"2", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:13:in `show'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:15:in `show'
+  [1m[36mJot Load (0.2ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:16:in `show'
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:17:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:17:in `show'
+Completed 200 OK in 11ms (Views: 3.8ms | ActiveRecord: 1.2ms | Allocations: 4995)
+
+
+Started GET "/users/5/categorys/3/jots/1" for ::1 at 2020-05-12 14:27:52 -0400
+Processing by JotsController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"3", "id"=>"1", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:13:in `show'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:15:in `show'
+Completed 404 Not Found in 7ms (ActiveRecord: 1.0ms | Allocations: 2172)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=1 [WHERE "categories"."user_id" = $1]):
+  
+app/controllers/jots_controller.rb:15:in `show'
+Started GET "/users/5/categorys/3/jots/2" for ::1 at 2020-05-12 14:27:57 -0400
+Processing by JotsController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"3", "id"=>"2", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:13:in `show'
+  [1m[36mCategory Load (7.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:15:in `show'
+  [1m[36mJot Load (0.4ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:16:in `show'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:17:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:17:in `show'
+Completed 200 OK in 21ms (Views: 4.6ms | ActiveRecord: 10.2ms | Allocations: 4886)
+
+
+Started GET "/users/5/categorys/" for ::1 at 2020-05-12 14:28:08 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 5]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 14ms (Views: 8.1ms | ActiveRecord: 3.2ms | Allocations: 5554)
+
+
+Started GET "/users/5/categorys/2" for ::1 at 2020-05-12 14:28:16 -0400
+Processing by CategorysController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "id"=>"2", "category"=>{}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:11:in `show'
+  [1m[36mCategory Load (1.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:13:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:14:in `show'
+Completed 200 OK in 13ms (Views: 2.6ms | ActiveRecord: 2.9ms | Allocations: 3201)
+
+
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:28:24 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (2.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.3ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 23ms (Views: 13.7ms | ActiveRecord: 4.5ms | Allocations: 5233)
+
+
+Started GET "/users/5/categorys/2/jots/1" for ::1 at 2020-05-12 14:30:02 -0400
+Processing by JotsController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "id"=>"1", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:13:in `show'
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:15:in `show'
+Completed 404 Not Found in 9ms (ActiveRecord: 2.9ms | Allocations: 2172)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=1 [WHERE "categories"."user_id" = $1]):
+  
+app/controllers/jots_controller.rb:15:in `show'
+Started GET "/users/5/categorys/2/jots/2" for ::1 at 2020-05-12 14:30:07 -0400
+Processing by JotsController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "id"=>"2", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:13:in `show'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:15:in `show'
+  [1m[36mJot Load (0.3ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:16:in `show'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:17:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:17:in `show'
+Completed 200 OK in 13ms (Views: 4.9ms | ActiveRecord: 2.1ms | Allocations: 4884)
+
+
+Started GET "/users/5/categorys/" for ::1 at 2020-05-12 14:30:20 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 5]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 28ms (Views: 8.8ms | ActiveRecord: 3.8ms | Allocations: 5557)
+
+
+Started GET "/users/5/categorys/" for ::1 at 2020-05-12 14:39:13 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 5]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 50ms (Views: 7.8ms | ActiveRecord: 37.0ms | Allocations: 5647)
+
+
+Started GET "/users/5/categorys/jots" for ::1 at 2020-05-12 14:39:19 -0400
+Processing by CategorysController#show as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "id"=>"jots", "category"=>{}}
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (7.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:11:in `show'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:13:in `show'
+Completed 404 Not Found in 20ms (ActiveRecord: 14.6ms | Allocations: 2173)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Category with 'id'=jots [WHERE "categories"."user_id" = $1]):
+  
+app/controllers/categorys_controller.rb:13:in `show'
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:39:36 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"Second", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"Second", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (1.0ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 17ms (Views: 7.2ms | ActiveRecord: 3.5ms | Allocations: 5253)
+
+
+Started POST "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:39:49 -0400
+Processing by JotsController#create as */*
+  Parameters: {"title"=>"Third", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"Third", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (5.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:57:in `jot_params'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mJot Create (4.5ms)[0m  [1m[32mINSERT INTO "jots" ("title", "note", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "Third"], ["note", "Here is a note that I wrote"], ["category_id", 2], ["created_at", "2020-05-12 18:39:49.800672"], ["updated_at", "2020-05-12 18:39:49.800672"]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+Completed 200 OK in 23ms (Views: 0.6ms | ActiveRecord: 11.7ms | Allocations: 5115)
+
+
+Started GET "/users/5/categorys/2/jots" for ::1 at 2020-05-12 14:39:55 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"Third", "note"=>"Here is a note that I wrote", "user_id"=>"5", "category_id"=>"2", "jot"=>{"title"=>"Third", "note"=>"Here is a note that I wrote"}}
+  [1m[36mUser Load (23.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (40.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (12.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 5], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (6.0ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCategory Load (7.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 114ms (Views: 19.2ms | ActiveRecord: 89.1ms | Allocations: 7424)
+
+
+Started POST "/users/" for ::1 at 2020-05-12 14:59:25 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	user:{
+		"username": "Admin2"
+		"email":"admin2@email.com"
+		"password":"password"
+	}
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+	user:{
+		"username": "Admin2"
+		"email":"admin2@email.com"
+		"password":"password"
+	}
+}'):
+  
+actionpack (6.0.3) lib/action_dispatch/http/parameters.rb:114:in `rescue in parse_formatted_parameters'
+actionpack (6.0.3) lib/action_dispatch/http/parameters.rb:110:in `parse_formatted_parameters'
+actionpack (6.0.3) lib/action_dispatch/http/request.rb:389:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.3) lib/action_dispatch/http/request.rb:388:in `POST'
+actionpack (6.0.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.3) lib/action_controller/metal/params_wrapper.rb:278:in `_wrapper_enabled?'
+actionpack (6.0.3) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.3) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	user:{
+		"username": "Admin2"
+		"email":"admin2@email.com"
+		"password":"password"
+	}
+}
+Started POST "/users/" for ::1 at 2020-05-12 14:59:30 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	user:{
+		"username": "Admin2",
+		"email":"admin2@email.com",
+		"password":"password"
+	}
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+	user:{
+		"username": "Admin2",
+		"email":"admin2@email.com",
+		"password":"password"
+	}
+}'):
+  
+actionpack (6.0.3) lib/action_dispatch/http/parameters.rb:114:in `rescue in parse_formatted_parameters'
+actionpack (6.0.3) lib/action_dispatch/http/parameters.rb:110:in `parse_formatted_parameters'
+actionpack (6.0.3) lib/action_dispatch/http/request.rb:389:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.3) lib/action_dispatch/http/request.rb:388:in `POST'
+actionpack (6.0.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.3) lib/action_controller/metal/params_wrapper.rb:278:in `_wrapper_enabled?'
+actionpack (6.0.3) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.3) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	user:{
+		"username": "Admin2",
+		"email":"admin2@email.com",
+		"password":"password"
+	}
+}
+Started POST "/users/" for ::1 at 2020-05-12 14:59:37 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"Admin2", "email"=>"admin2@email.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Admin2"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin2@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Admin2"], ["email", "admin2@email.com"], ["password_digest", "$2a$12$.NqNq1GT2uP8LzgnbWD1yO7T9tMJdsVMTYMZm1.NAvwtwlyPo9eV6"], ["created_at", "2020-05-12 18:59:37.823125"], ["updated_at", "2020-05-12 18:59:37.823125"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 201 Created in 476ms (Views: 1.1ms | ActiveRecord: 4.0ms | Allocations: 5479)
+
+
+Started POST "/users/6" for ::1 at 2020-05-12 15:00:14 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/users/6"):
+  
+actionpack (6.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/6" for ::1 at 2020-05-12 15:00:17 -0400
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"username"=>"Admin2", "email"=>"admin2@email.com", "password"=>"[FILTERED]"}, "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 27ms (Views: 0.4ms | ActiveRecord: 13.8ms | Allocations: 5805)
+
+
+Started GET "/users/6/categorys" for ::1 at 2020-05-12 15:00:24 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"user"=>{"username"=>"Admin2", "email"=>"admin2@email.com", "password"=>"[FILTERED]"}, "user_id"=>"6", "category"=>{}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 6]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 4.8ms | Allocations: 2233)
+
+
+Started POST "/users/6/categorys" for ::1 at 2020-05-12 15:00:39 -0400
+Processing by CategorysController#create as */*
+  Parameters: {"name"=>"testing", "user_id"=>"6", "category"=>{"name"=>"testing"}}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:44:in `category_params'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:18:in `create'
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/categorys_controller.rb:18:in `create'
+  [1m[36mCategory Create (2.5ms)[0m  [1m[32mINSERT INTO "categories" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "testing"], ["user_id", 6], ["created_at", "2020-05-12 19:00:39.724708"], ["updated_at", "2020-05-12 19:00:39.724708"]]
+  ↳ app/controllers/categorys_controller.rb:18:in `create'
+  [1m[35m (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/categorys_controller.rb:18:in `create'
+Completed 200 OK in 33ms (Views: 0.4ms | ActiveRecord: 15.7ms | Allocations: 7955)
+
+
+Started POST "/users/6/categorys/7" for ::1 at 2020-05-12 15:00:45 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/users/6/categorys/7"):
+  
+actionpack (6.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3) lib/rails/engine.rb:527:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/6/categorys/7" for ::1 at 2020-05-12 15:00:49 -0400
+Processing by CategorysController#show as */*
+  Parameters: {"name"=>"testing", "user_id"=>"6", "id"=>"7", "category"=>{"name"=>"testing"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:11:in `show'
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 6], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:13:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:14:in `show'
+Completed 200 OK in 11ms (Views: 3.8ms | ActiveRecord: 2.2ms | Allocations: 3211)
+
+
+Started GET "/users/6/categorys/7" for ::1 at 2020-05-12 15:03:43 -0400
+Processing by CategorysController#show as */*
+  Parameters: {"name"=>"testing", "user_id"=>"6", "id"=>"7", "category"=>{"name"=>"testing"}}
+  [1m[36mUser Load (9.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:11:in `show'
+  [1m[36mCategory Load (37.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 6], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:13:in `show'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:14:in `show'
+Completed 200 OK in 67ms (Views: 4.9ms | ActiveRecord: 53.9ms | Allocations: 3201)
+
+
+Started GET "/users/6/categorys/7/jots" for ::1 at 2020-05-12 15:03:51 -0400
+Processing by JotsController#index as */*
+  Parameters: {"name"=>"testing", "user_id"=>"6", "category_id"=>"7", "jot"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 6], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.8ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 7]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 9ms (Views: 2.0ms | ActiveRecord: 46.4ms | Allocations: 3016)
+
+
+Started POST "/users/6/categorys/7/jots" for ::1 at 2020-05-12 15:04:08 -0400
+Processing by JotsController#create as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user_id"=>"6", "category_id"=>"7", "jot"=>{"title"=>"test", "note"=>"this is a note"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:57:in `jot_params'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[36mJot Create (0.6ms)[0m  [1m[32mINSERT INTO "jots" ("title", "note", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "test"], ["note", "this is a note"], ["category_id", 7], ["created_at", "2020-05-12 19:04:09.063234"], ["updated_at", "2020-05-12 19:04:09.063234"]]
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/jots_controller.rb:21:in `create'
+Completed 200 OK in 79ms (Views: 0.5ms | ActiveRecord: 10.0ms | Allocations: 8882)
+
+
+Started GET "/users/6/categorys/7/jots" for ::1 at 2020-05-12 15:04:14 -0400
+Processing by JotsController#index as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user_id"=>"6", "category_id"=>"7", "jot"=>{"title"=>"test", "note"=>"this is a note"}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:5:in `index'
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1 AND "categories"."id" = $2 LIMIT $3[0m  [["user_id", 6], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:7:in `index'
+  [1m[36mJot Load (0.4ms)[0m  [1m[34mSELECT "jots".* FROM "jots" WHERE "jots"."category_id" = $1[0m  [["category_id", 7]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCategory Load (5.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/jots_controller.rb:9:in `index'
+Completed 200 OK in 63ms (Views: 49.2ms | ActiveRecord: 8.5ms | Allocations: 5240)
+
+
+Started GET "/users/5/categorys" for ::1 at 2020-05-12 15:04:26 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (10.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (7.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 6]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 40ms (Views: 17.7ms | ActiveRecord: 18.9ms | Allocations: 3298)
+
+
+Started GET "/users/5/categorys" for ::1 at 2020-05-12 15:04:33 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (2.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 6]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 15ms (Views: 5.8ms | ActiveRecord: 3.1ms | Allocations: 3298)
+
+
+Started GET "/users" for ::1 at 2020-05-12 15:04:37 -0400
+Processing by UsersController#index as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 6ms (Views: 3.0ms | ActiveRecord: 0.7ms | Allocations: 2057)
+
+
+Started GET "/users" for ::1 at 2020-05-12 15:05:13 -0400
+Processing by UsersController#index as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 45ms (Views: 41.5ms | ActiveRecord: 0.9ms | Allocations: 2060)
+
+
+Started GET "/users/5" for ::1 at 2020-05-12 15:05:17 -0400
+Processing by UsersController#show as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "id"=>"5", "user"=>{}}
+  [1m[36mUser Load (17.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `set_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 21ms (Views: 0.4ms | ActiveRecord: 18.0ms | Allocations: 1476)
+
+
+Started GET "/users/5/categorys" for ::1 at 2020-05-12 15:05:23 -0400
+Processing by CategorysController#index as */*
+  Parameters: {"title"=>"test", "note"=>"this is a note", "user_id"=>"5", "category"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:5:in `index'
+  [1m[36mCategory Load (1.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."user_id" = $1[0m  [["user_id", 5]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/categorys_controller.rb:7:in `index'
+Completed 200 OK in 19ms (Views: 13.2ms | ActiveRecord: 2.1ms | Allocations: 5554)
+
+

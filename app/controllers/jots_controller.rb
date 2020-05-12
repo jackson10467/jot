@@ -55,6 +55,6 @@ class JotsController < ApplicationController
   
   def jot_params
     @user = User.find(params[:user_id])
-    params.require(:jot).permit(:title,:note).merge(:category_id => @current_user.id)
+    params.require(:jot).permit(:title,:note).merge(:category_id => params[:category_id])
   end
 end
