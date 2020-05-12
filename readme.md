@@ -142,7 +142,7 @@ src
 
 #### ERD Model
 
-> ![Imgur](https://i.imgur.com/8IS4Q5v.png)
+> ![Imgur](https://i.imgur.com/aYhsusK.png)
 
 #### Data Heirarchy
 
