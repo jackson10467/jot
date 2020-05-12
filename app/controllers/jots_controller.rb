@@ -19,7 +19,7 @@ class JotsController < ApplicationController
   
   def create
     @jot = Jot.create(jot_params)
-    render json: @category, status: :ok
+    render json: @jot, status: :ok
   end
   
   def update
@@ -32,19 +32,29 @@ class JotsController < ApplicationController
     else 
       render json: @category.errors, status: :unprocessable_entity
     end
+
+
+    @user = User.find(params[:user_id])
+    @category = Category.find(params[:category_id])
+    @jot = Jot.find(params[:id])
+    
+    if @jot.update(jot_params)
+      render json: @jot
+    else 
+      render json: @jot.errors, status: :unprocessable_entity
+    end
+
   end
 
   def destroy
-    @user = User.find(@current_user.id)
-    @categories = Category.where(user_id: @current_user.id)
-    @category = @categories.find(params[:id])
-    @category.destroy
+    @jot = Jot.find(params[:id])
+    @jot.destroy
   end
   
   private
   
   def jot_params
     @user = User.find(params[:user_id])
-    params.require(:category).permit(:name).merge(:category_id => @current_user.id)
+    params.require(:jot).permit(:title,:note).merge(:category_id => @current_user.id)
   end
 end
