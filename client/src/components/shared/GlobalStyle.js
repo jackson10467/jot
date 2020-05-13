@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   body{
     /* font family goes here */
+    font-family: 'Quicksand', sans-serif;
     /* import it in the public/html on line 11 */
     background-color:whitesmoke
   }

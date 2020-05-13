@@ -51,7 +51,7 @@ class App extends Component {
       theme = {theme}
       >
       <GlobalStyle/>
-      <div className="App">
+        
         <Header
           handleLogout={this.handleLogout}
           currentUser={this.state.currentUser}
@@ -61,7 +61,7 @@ class App extends Component {
           handleLogin={this.handleLogin}
           currentUser={this.state.currentUser}
         />
-        </div>
+
       </ThemeProvider>
     )
   }
