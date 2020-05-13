@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { withRouter } from 'react-router';
+import { ThemeProvider } from 'styled-components'; 
+import theme from "./components/shared/theme";
+import GlobalStyle from "./components/shared/GlobalStyle";
+import Header from './components/header';
+import Main from './components/main';
+import {
+  loginUser,
+  registerUser,
+  verifyUser,
+  removeToken
+} from './services/APIhelper';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    currentUser: null
+  }
+
+  componentDidMount() {
+    this.confirmUser();
+  }
+
+  handleLogin = async (loginData) => {
+    const currentUser = await loginUser(loginData);
+    this.setState({ currentUser })
+  }
+
+  handleRegister = async (registerData) => {
+    const currentUser = await registerUser(registerData);
+    this.setState({ currentUser })
+  }
+
+  confirmUser = async () => {
+    const currentUser = await verifyUser();
+    this.setState({ currentUser })
+  }
+
+  handleLogout = () => {
+    localStorage.clear();
+    this.setState({
+      currentUser: null
+    })
+    removeToken();
+    this.props.history.push('/');
+  }
+
+  render() {
+    return (
+      <ThemeProvider
+      theme = {theme}
+      >
+      <GlobalStyle/>
+      <div className="App">
+        <Header
+          handleLogout={this.handleLogout}
+          currentUser={this.state.currentUser}
+        />
+        <Main
+          handleRegister={this.handleRegister}
+          handleLogin={this.handleLogin}
+          currentUser={this.state.currentUser}
+        />
+        </div>
+      </ThemeProvider>
+    )
+  }
 }
 
-export default App;
+export default withRouter(App);
