@@ -41,7 +41,7 @@ export const removeToken = () => {
 // CATEGORIES
 
 export const getAllCategories = async (user_id) => {
-  const resp = await axios.get(`${BASE_URL}/users/${user_id}/categorys`);
+  const resp = await api.get(`/users/${user_id}/categorys`);
   return resp.data;
 };
 
@@ -62,5 +62,32 @@ export const putCategory = async (user_id,categoryID,categoryData) => {
 
 export const destroyCategory = async (user_id,category_id) => {
   const resp = await api.delete(`/users/${user_id}/categorys/${category_id}`);
+  return resp;
+}
+
+//JOTS
+
+export const getAllJots = async (user_id,categoryID) => {
+  const resp = await api.get(`/users/${user_id}/categorys/${categoryID}/jots`);
+  return resp.data;
+};
+
+export const getOneJot = async (user_id,categoryID,jotID) => {
+  const resp = await api.get(`/users/${user_id}/categorys/${categoryID}/jots/${jotID}`);
+  return resp.data;
+}
+
+export const postJot = async (user_id,categoryID,jotID,jotData) => {
+  const resp = await api.post(`/users/${user_id}/categorys/${categoryID}/jots/${jotID}`, jotData);
+  return resp.data;
+}
+
+export const putJot = async (user_id,categoryID,jotID,jotData) => {
+  const resp = await api.put(`/users/${user_id}/categorys/${categoryID}/jots/${jotID}`, jotData);
+  return resp.data;
+}
+
+export const destroyJot = async (user_id,category_id,jotID) => {
+  const resp = await api.delete(`/users/${user_id}/categorys/${category_id}/jots/${jotID}`);
   return resp;
 }
