@@ -40,27 +40,27 @@ export const removeToken = () => {
 
 // CATEGORIES
 
-export const getAllCategories = async () => {
-  const resp = await axios.get(`${BASE_URL}/users/`);
+export const getAllCategories = async (user_id) => {
+  const resp = await axios.get(`${BASE_URL}/users/${user_id}/categorys`);
   return resp.data;
 };
 
-export const getOneCategory = async (id) => {
-  const resp = await api.get(`/foods/${id}`);
+export const getOneCategory = async (user_id,category_id) => {
+  const resp = await api.get(`/users/${user_id}/categorys/${category_id}`);
   return resp.data;
 }
 
-export const postCategory = async (foodData) => {
-  const resp = await api.post('/foods', foodData);
+export const postCategory = async (user_id,categoryData) => {
+  const resp = await api.post(`/users/${user_id}/categorys`, categoryData);
   return resp.data;
 }
 
-export const putCategory = async (id, foodData) => {
-  const resp = await api.put(`/foods/${id}`, foodData);
+export const putCategory = async (user_id,categoryID,categoryData) => {
+  const resp = await api.put(`/users/${user_id}/categorys/${categoryID}`, categoryData);
   return resp.data;
 }
 
-export const destroyCategory = async (id) => {
-  const resp = await api.delete(`/foods/${id}`);
+export const destroyCategory = async (user_id,category_id) => {
+  const resp = await api.delete(`/users/${user_id}/categorys/${category_id}`);
   return resp;
 }
