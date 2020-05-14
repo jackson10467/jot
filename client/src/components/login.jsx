@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { StyledInput } from "./shared/comps"
 
 const Container = styled.div`
   display:flex;
@@ -9,18 +10,24 @@ const Container = styled.div`
   flex-direction:column;
 `
 
-const StyledInput = styled.input`
+const StyledButton = styled.button`
   width: 50%;
-  height: 60%;
+  height: 40%;
+  margin-top: 5vh;
+  background-color: #ffffff;
+  color: black;
   padding: 1em;
-  margin: 2vh;
   font-family: "Montserrat", sans-serif;
-  text-align: center;
-  transition: width 0.3s;
+  transition: all 0.2s ease-in;
+
+  &:hover{
+    background-color:#307FE2;
+    color:white;
+  }
 `
 
-const StyledButton = styled.button`
-
+const Bottom = styled.div`
+display:flex;
 `
 
 export default class Login extends Component {
@@ -47,7 +54,7 @@ export default class Login extends Component {
         this.props.handleLogin(this.state);
         this.props.history.push('/');
       }}>
-        <label htmlFor="username">username:</label>
+        <label htmlFor="username">Username:</label>
         <StyledInput
           id="username"
           type="text"
@@ -56,7 +63,7 @@ export default class Login extends Component {
           onChange={this.handleChange}
         />
         <br />
-        <label htmlFor="email">email:</label>
+        <label htmlFor="email">Email:</label>
         <StyledInput
           id="email"
           type="text"
@@ -65,7 +72,7 @@ export default class Login extends Component {
           onChange={this.handleChange}
         />
         <br />
-        <label htmlFor="password">password:</label>
+        <label htmlFor="password">Password:</label>
         <StyledInput
           id="password"
           type="password"
@@ -74,8 +81,10 @@ export default class Login extends Component {
           onChange={this.handleChange}
         />
         <br />
+        <Bottom>
         <Link to='/register'>register</Link>
-        <button>Submit</button>
+        <StyledButton>Submit</StyledButton>
+        </Bottom>
         </form>
         </Container>
     )

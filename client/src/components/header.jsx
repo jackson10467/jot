@@ -33,20 +33,24 @@ const StyledLink = styled(Link)`
   color:black;
   font-size:16px;
   font-family: 'Montserrat', sans-serif;
-
 `
 
+const StyledA = styled.a`
+  color:black;
+
+&:hover{
+  color:${props => props.theme.blue}
+}
+`
 export default function Header(props) {
   return (
     <StyledHeader>
-      <Logo>JOT✎</Logo>
+      <Logo><StyledA href="/"> JOT✎</StyledA></Logo>
       {
         props.currentUser
           ?
-          <>
-            <p>{props.currentUser.username}</p>
-            <button onClick={props.handleLogout}>Logout</button>
-          </>
+          <Links>
+          </Links>
           :
           <Links>
             <StyledLink to="/login">Login</StyledLink>
@@ -59,8 +63,8 @@ export default function Header(props) {
         props.currentUser
         &&
         <Links>
-          <StyledLink to="/foods">Foods</StyledLink>
-          <StyledLink to="/flavors">Flavors</StyledLink>
+          <StyledLink to="/categories">Categories</StyledLink>
+          <StyledLink onClick={props.handleLogout}>Logout</StyledLink>
         </Links>
       }
 

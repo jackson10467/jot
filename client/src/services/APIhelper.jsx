@@ -50,7 +50,7 @@ export const getOneCategory = async (user_id,category_id) => {
   return resp.data;
 }
 
-export const postCategory = async (user_id,categoryData) => {
+export const postCategory = async (user_id, categoryData) => {
   const resp = await api.post(`/users/${user_id}/categorys`, categoryData);
   return resp.data;
 }

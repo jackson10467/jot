@@ -17,23 +17,26 @@ class App extends Component {
     currentUser: null
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.confirmUser();
   }
 
   handleLogin = async (loginData) => {
     const currentUser = await loginUser(loginData);
     this.setState({ currentUser })
+    console.log("login")
   }
 
   handleRegister = async (registerData) => {
     const currentUser = await registerUser(registerData);
     this.setState({ currentUser })
+    console.log("handle register")
   }
 
   confirmUser = async () => {
     const currentUser = await verifyUser();
     this.setState({ currentUser })
+    console.log("confirm user")
   }
 
   handleLogout = () => {
@@ -46,12 +49,13 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.currentUser)
     return (
       <ThemeProvider
       theme = {theme}
       >
       <GlobalStyle/>
-        
+
         <Header
           handleLogout={this.handleLogout}
           currentUser={this.state.currentUser}
