@@ -55,7 +55,6 @@ class App extends Component {
       theme = {theme}
       >
       <GlobalStyle/>
-
         <Header
           handleLogout={this.handleLogout}
           currentUser={this.state.currentUser}
