@@ -21,7 +21,7 @@ export default class Main extends Component {
     }
   }
 
-  async componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps, prevState) {
     console.log("hello")
     if ( this.props.currentUser!= null && this.props.currentUser !== prevProps.currentUser) {
       console.log("hello2")
@@ -47,11 +47,7 @@ export default class Main extends Component {
 
   handleCategoryUpdate = async (user_id, category_id, categoryData) => {
     const updatedCategory = await putCategory(user_id, category_id,categoryData);
-    this.setState(prevState => ({
-      categories: prevState.categories.map(category => {
-        return category.id === category_id ? updatedCategory : category
-      })
-    }))
+    this.readAllCatagories(this.props.currentUser.id)
   }
 
   // THE CATEGORIES PAGE DOES NOT UPDATE, NEEDS A REFRESH TO REFLECT CHANGES
