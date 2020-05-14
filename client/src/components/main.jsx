@@ -17,19 +17,18 @@ export default class Main extends Component {
     this.state = {
       categories: [],
       currentUser: null,
-      logged: false
+      logged: true
     }
   }
 
   async componentDidUpdate(prevProps) {
     console.log("hello")
-    if (this.props.currentUser !== prevProps.currentUser) {
+    if ( this.props.currentUser!= null && this.props.currentUser !== prevProps.currentUser) {
       console.log("hello2")
+      this.setState({
+        currentUser: this.props.currentUser
+      })
       this.readAllCatagories(this.props.currentUser.id);
-      this.setState({ currentUser: this.props.currentUser })
-    }
-    else if (this.props.currentUser == null) {
-      this
     }
   }
 
