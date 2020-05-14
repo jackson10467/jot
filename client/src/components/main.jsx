@@ -45,14 +45,16 @@ export default class Main extends Component {
     }))
   }
 
-  handleCategoryUpdate = async (id, categoryData) => {
-    const updatedCategory = await putCategory(id, categoryData);
+  handleCategoryUpdate = async (user_id, category_id, categoryData) => {
+    const updatedCategory = await putCategory(user_id, category_id,categoryData);
     this.setState(prevState => ({
       categories: prevState.categories.map(category => {
-        return category.id === id ? updatedCategory : category
+        return category.id === category_id ? updatedCategory : category
       })
     }))
   }
+
+  // THE CATEGORIES PAGE DOES NOT UPDATE, NEEDS A REFRESH TO REFLECT CHANGES
 
   handleCategoryDelete = async (id, category_id) => {
     await destroyCategory(id, category_id);
@@ -87,13 +89,14 @@ export default class Main extends Component {
             handleCategoryDelete = {this.handleCategoryDelete}
           />
         )} />
-        {/* <Route exact path='/categories/:id' render={(props) => {
+        <Route exact path='/categories/:id' render={(props) => {
           const { id } = props.match.params
           return <ShowCategory
             categoryId={id}
+            currentUser = {this.props.currentUser}
             categories={this.state.categories}
           />
-        }} /> */}
+        }} />
         <Route path="/categories/new" render={(props) => (
           <CreateCategory
             {...props}
@@ -101,7 +104,7 @@ export default class Main extends Component {
             handleCategorySubmit={this.handleCategorySubmit}
           />
         )} />
-        {/* <Route path='/categories/:id/edit' render={(props) => {
+        <Route path='/categories/:id/edit' render={(props) => {
           const { id } = props.match.params
           return <UpdateCategory
             {...props}
@@ -109,7 +112,7 @@ export default class Main extends Component {
             handleCategoryUpdate={this.handleCategoryUpdate}
             categoryId={id}
           />
-        }} /> */}
+        }} />
       </main>
     )
   }

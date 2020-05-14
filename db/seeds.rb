@@ -6,6 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(username:"test", email:"test@email.com", password:"testing")
+User.create!(username:"heroku", email:"heroku@email.com", password:"heroku")
 
 Category.create!(name: "school", user_id:1)
