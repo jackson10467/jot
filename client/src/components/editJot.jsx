@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getOneCategory } from '../services/APIhelper';
+import { getOneJot } from '../services/APIhelper';
 
 export default class EditJot extends Component {
   state = {
@@ -25,9 +25,9 @@ export default class EditJot extends Component {
 
   setFormData = async () => {
     if (this.props.currentUser) {
-      const category = await getOneCategory(this.props.currentUser.id, this.props.categoryId);
+      const category = await getOneJot(this.props.currentUser.id, this.props.categoryId);
       this.setState({
-        category:category
+        jot:category
       })
     }
   }
@@ -39,10 +39,18 @@ export default class EditJot extends Component {
         this.props.handleCategoryUpdate(this.props.currentUser.id, this.props.categoryId, this.state.category);
         this.props.history.push('/categories');
       }}>
-        <h3>Update Category Name</h3>
+        <h3>Update Jot Title:</h3>
         <input
+          name="title"
           type="text"
-          value={this.state.category.name}
+          value={this.state.jot.title}
+          onChange={this.handleChange}
+        />
+        <h3>Update Jot Title:</h3>
+        <input
+          name="note"
+          type="text"
+          value={this.state.jot.note}
           onChange={this.handleChange}
         />
         <button>Submit</button>

@@ -15,16 +15,15 @@ import {
   putJot,
   destroyJot,
 } from "../services/APIhelper";
+import CreateJot from "./CreateJot";
 // import ShowJots from './jots';
 // import ShowJot from './jot'; these are for category.jsx
-
 import ShowCategories from "./categories";
 import ShowCategory from "./category";
 import CreateCategory from "./CreateCategory.jsx";
 import UpdateCategory from "./UpdateCategory.jsx";
 import ShowJot from "./jot.jsx";
 import EditJot from "./editJot.jsx";
-import CreateJot from "./CreateJot";
 
 export default class Main extends Component {
   constructor(props) {
@@ -174,13 +173,6 @@ export default class Main extends Component {
 
         {/* <Route
             path="/categories/:id/jots/:jotid"
-            render={(props) => (
-              <ShowJot {...props} handleLogin={this.props.handleLogin} />
-            )}
-          /> */}
-
-        <Route
-            path="/categories/:id/jots/:jotid"
             render={(props) => {
               const { id } = props.match.params;
               return (
@@ -192,7 +184,7 @@ export default class Main extends Component {
                 />
               );
             }}
-          />
+          /> */}
         <Route
             path="/categories/:id/jots/:jotid/edit"
             render={(props) => {
