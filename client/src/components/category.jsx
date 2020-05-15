@@ -72,7 +72,9 @@ export default class ShowCategory extends Component {
           <>
             {jots.map((jot) => (
               <>
-                <div key={jot.id}>
+                <div key={jot.id} onClick={() => {
+                  <Link to={`/categories/${this.props.categoryId}/jots/${jot.id}`}></Link>
+                }}>
                   <h3>{jot.title}</h3>
                   <p>{jot.note}</p>
                   <Link

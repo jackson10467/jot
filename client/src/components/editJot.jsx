@@ -38,7 +38,7 @@ export default class EditJot extends Component {
       <form onSubmit={(e) => {
         e.preventDefault();
         this.props.handleJotUpdate(this.props.currentUser.id, this.props.categoryId, this.props.jotId,this.state.jot);
-        this.props.history.push('/categories');
+        this.props.history.push(`/categories/${this.props.categoryId}/jots/${this.props.jotId}`);
       }}>
         <h3>Update Jot Title:</h3>
         <input
@@ -47,8 +47,8 @@ export default class EditJot extends Component {
           value={this.state.jot.title}
           onChange={this.handleChange}
         />
-        <h3>Update Jot Title:</h3>
-        <input
+        <h3>Update Jot Note:</h3>
+        <textarea
           name="note"
           type="text"
           value={this.state.jot.note}

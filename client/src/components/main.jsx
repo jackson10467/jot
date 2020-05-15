@@ -32,6 +32,7 @@ export default class Main extends Component {
       categories: [],
       currentUser: null,
       logged: true,
+      jots:[]
     };
   }
 
@@ -91,7 +92,7 @@ export default class Main extends Component {
 
   handleJotUpdate = async (user_id, category_id, jotID, jotData) => {
     const updatedJot = await putJot(user_id, category_id, jotID, jotData);
- 
+    // this.readAllJots(this.props.currentUser.id,categoryId)
   };
 
 
@@ -177,20 +178,22 @@ export default class Main extends Component {
           }}
         />
 
-        {/* <Route
-            path="/categories/:id/jots/:jotid"
+        <Route
+            exact path="/categories/:id/jots/:jotid"
             render={(props) => {
               const { id } = props.match.params;
+              const { jotid } = props.match.params
               return (
                 <ShowJot
                   {...props}
                   currentUser={this.state.currentUser}
-                  handleCategoryUpdate={this.handleCategoryUpdate}
+                  handleJotUpdate={this.handleJotUpdate}
                   categoryId={id}
+                  jotID = {jotid}
                 />
               );
             }}
-          /> */}
+          />
         <Route
             path="/categories/:id/jots/:jotid/edit"
             render={(props) => {
