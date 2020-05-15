@@ -79,9 +79,12 @@ export default class ShowCategory extends Component {
 
   render() {
     const { jots } = this.state;
+    console.log("this page is loaded")
     return (
       <div>
-      <h2>Jots</h2>
+        <Link to="/categories/:id/jots/new">
+        <button>Create</button>
+        </Link>
         {jots && (
           <>
             {jots.map((jot) => (
@@ -97,8 +100,7 @@ export default class ShowCategory extends Component {
             {...props}
             handleLogin={this.props.handleLogin}
           />
-        )} /> */}
-
+        )} /> */}        
         <Route
           path="/categories/:id/jots/new"
           render={(props) => (

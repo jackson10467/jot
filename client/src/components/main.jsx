@@ -97,7 +97,6 @@ export default class Main extends Component {
           )}
         />
         <Route
-          exact
           path="/categories/:id"
           render={(props) => {
             const { id } = props.match.params;

@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 
 export default class CreateJot extends Component {
   state = {
-    jot: { title: "" }
+    jot: {
+      title: "",
+      note: ""
+    }
   }
 
   handleChange = (e) => {
@@ -17,7 +20,7 @@ export default class CreateJot extends Component {
       <form onSubmit={(e) => {
         e.preventDefault();
         this.props.handleJotSubmit(this.props.currentUser.id, this.state.category);
-        this.props.history.push('/categories');
+        this.props.history.push('/categories/:id');
       }}>
         <h3>Category Name:</h3>
         <input

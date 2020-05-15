@@ -7,7 +7,7 @@ export default function ShowCategories(props) {
       <h2>Categories</h2>
       {props.categories.map((category) => (
         <React.Fragment key={category.id}>
-          <Link to={`/category/${category.id}`}>{category.name}</Link>
+          <Link to={`/categories/${category.id}`}>{category.name}</Link>
           <button
             onClick={() => {
               props.history.push(`/categories/${category.id}/edit`);
