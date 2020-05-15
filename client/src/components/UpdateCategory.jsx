@@ -40,7 +40,6 @@ export default class UpdateCategory extends Component {
           onChange={this.handleChange}
         />
         <button>Submit</button>
-
       </form>
     )
   }

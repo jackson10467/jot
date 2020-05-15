@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import Login from "./login";
 import Register from "./register";
@@ -8,13 +8,23 @@ import {
   postCategory,
   putCategory,
   destroyCategory,
+  getOneCategory,
+  getAllJots,
+  getOneJot,
+  postJot,
+  putJot,
+  destroyJot,
 } from "../services/APIhelper";
 // import ShowJots from './jots';
 // import ShowJot from './jot'; these are for category.jsx
+
 import ShowCategories from "./categories";
 import ShowCategory from "./category";
 import CreateCategory from "./CreateCategory.jsx";
 import UpdateCategory from "./UpdateCategory.jsx";
+import ShowJot from "./jot.jsx";
+import EditJot from "./editJot.jsx";
+import CreateJot from "./CreateJot";
 
 export default class Main extends Component {
   constructor(props) {
@@ -27,12 +37,10 @@ export default class Main extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    console.log("hello");
     if (
       this.props.currentUser != null &&
       this.props.currentUser !== prevProps.currentUser
     ) {
-      console.log("hello2");
       this.setState({
         currentUser: this.props.currentUser,
       });
@@ -69,6 +77,19 @@ export default class Main extends Component {
       }),
     }));
   };
+  handleJotSubmit = async (user_id, category_id, jotData) => {
+    const newJot = await postJot(user_id, category_id, jotData);
+    // this.setState((prevState) => ({
+    //   jots: [...prevState.jots, newJot],
+    // }));
+  };
+
+  handleJotUpdate = async (user_id, category_id, jotID, jotData) => {
+    const updatedJot = await putJot(user_id, category_id, jotID, jotData);
+    this.readAllJots(this.props.currentUser.id, this.props.categoryId);
+  };
+
+
 
   render() {
     return (
@@ -86,7 +107,7 @@ export default class Main extends Component {
           )}
         />
         <Route
-          path="/categories"
+          exact path="/categories"
           render={(props) => (
             <ShowCategories
               {...props}
@@ -96,8 +117,19 @@ export default class Main extends Component {
             />
           )}
         />
+        <Switch>
         <Route
-          path="/categories/:id"
+          exact path="/categories/new"
+          render={(props) => (
+            <CreateCategory
+              {...props}
+              currentUser={this.props.currentUser}
+              handleCategorySubmit={this.handleCategorySubmit}
+            />
+          )}
+        />
+        <Route
+          exact path="/categories/:id/"
           render={(props) => {
             const { id } = props.match.params;
             return (
@@ -108,18 +140,10 @@ export default class Main extends Component {
             );
           }}
         />
+        </Switch>
+
         <Route
-          path="/categories/new"
-          render={(props) => (
-            <CreateCategory
-              {...props}
-              currentUser={this.props.currentUser}
-              handleCategorySubmit={this.handleCategorySubmit}
-            />
-          )}
-        />
-        <Route
-          path="/categories/:id/edit"
+          exact path="/categories/:id/edit"
           render={(props) => {
             const { id } = props.match.params;
             return (
@@ -132,6 +156,57 @@ export default class Main extends Component {
             );
           }}
         />
+
+        <Route
+          exact path={`/categories/:id/jots/newJot`}
+          render={(props) => {
+            const { id } = props.match.params;
+            return (
+              <CreateJot
+                {...props}
+                categoryId={id}
+                currentUser={this.props.currentUser}
+                handleJotSubmit={this.handleJotSubmit}
+              />
+            );
+          }}
+        />
+
+        {/* <Route
+            path="/categories/:id/jots/:jotid"
+            render={(props) => (
+              <ShowJot {...props} handleLogin={this.props.handleLogin} />
+            )}
+          /> */}
+
+        <Route
+            path="/categories/:id/jots/:jotid"
+            render={(props) => {
+              const { id } = props.match.params;
+              return (
+                <ShowJot
+                  {...props}
+                  currentUser={this.state.currentUser}
+                  handleCategoryUpdate={this.handleCategoryUpdate}
+                  categoryId={id}
+                />
+              );
+            }}
+          />
+        <Route
+            path="/categories/:id/jots/:jotid/edit"
+            render={(props) => {
+              const { id } = props.match.params;
+              return (
+                <EditJot
+                  {...props}
+                  currentUser={this.state.currentUser}
+                  handleCategoryUpdate={this.handleJotUpdate}
+                  categoryId={id}
+                />
+              );
+            }}
+          />
       </main>
     );
   }

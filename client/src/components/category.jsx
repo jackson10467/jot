@@ -9,28 +9,35 @@ import {
   putJot,
   destroyJot,
 } from "../services/APIhelper";
-import CreateJot from './CreateJot'
 
 export default class ShowCategory extends Component {
   state = {
     category: null,
-    jots: [],
+    jots: null,
     currentUser: null,
   };
 
+  async componentDidMount() {
+    if (this.props.categoryId != null && this.props.currentUser != null) {
+      this.setCategory(this.props.currentUser.id, this.props.categoryId);
+      this.readAllJots(this.props.currentUser.id, this.props.categoryId);
+      console.log("read my jots goddamn it");
+    }
+  }
   async componentDidUpdate(prevProps, prevState) {
-    console.log("hello");
     if (
+      this.props.categoryId !== prevProps.categoryId &&
+      this.props.categoryId != null &&
       this.props.currentUser != null &&
-      this.props.currentUser !== prevProps.currentUse &&
-      this.props.categoryId !== null
+      this.props.currentUser !== prevProps.currentUser
     ) {
-      console.log("hello2");
+      console.log("hello this is a test");
       this.setState({
         currentUser: this.props.currentUser,
       });
-      this.readAllJots(this.props.currentUser.id, this.props.categoryId);
       this.setCategory(this.props.currentUser.id, this.props.categoryId);
+      this.readAllJots(this.props.currentUser.id, this.props.categoryId);
+      console.log("read my jots goddamn it");
     }
   }
 
@@ -39,93 +46,56 @@ export default class ShowCategory extends Component {
     this.setState({ category });
   };
 
-  // handleChange = (e) => {
-  //   const { value } = e.target;
-  //   this.setState({
-  //     flavor: value
-  //   })
-  // }
-
   readAllJots = async (user_id, category_id) => {
     const getJots = await getAllJots(user_id, category_id);
     this.setState({ jots: getJots });
   };
 
-  handleJotSubmit = async (user_id, category_id, jotData) => {
-    const newJot = await postJot(user_id, category_id, jotData);
-    this.setState((prevState) => ({
-      jots: [...prevState.jots, newJot],
-    }));
-  };
-
-  handleJotUpdate = async (user_id, category_id, jotID, jotData) => {
-    const updatedJot = await putJot(user_id, category_id, jotID, jotData);
-    this.readAllJots(this.props.currentUser.id, this.props.categoryId);
-  };
-
   handleJotDelete = async (user_id, category_id, jotID) => {
     await destroyJot(user_id, category_id, jotID);
     this.setState((prevState) => ({
-      categories: prevState.categories.filter((category) => {
-        return category.id !== category_id;
+      jots: prevState.jots.filter((jot) => {
+        return jot.id !== jotID;
       }),
     }));
   };
-  // handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const food = await addFlavor(this.state.flavor, this.state.food.id);
-  //   this.setState({ food });
-  // }
 
   render() {
     const { jots } = this.state;
-    console.log("this page is loaded")
     return (
       <div>
-        <Link to="/categories/:id/jots/new">
-        <button>Create</button>
+        <h2>Jots</h2>
+        <Link to={`/categories/${this.props.categoryId}/jots/newJot`}>
+          <button>Create</button>
         </Link>
         {jots && (
           <>
             {jots.map((jot) => (
               <>
-                <h3 key={jot.id}>{jot.title}</h3>
-                <p key={jot.id}>{jot.title}</p>
+                <div key={jot.id}>
+                  <h3>{jot.title}</h3>
+                  <p>{jot.note}</p>
+                  <Link
+                    to={`/categories/${this.props.categoryId}/jots/${jot.id}/edit`}
+                  >
+                    <button>Edit</button>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      this.handleJotDelete(
+                        this.props.currentUser.id,
+                        this.props.categoryId,
+                        jot.id
+                      );
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </>
             ))}
           </>
         )}
-        {/* <Route path='/categories/:id/jots/:jotid' render={(props) => (
-          <ShowJot
-            {...props}
-            handleLogin={this.props.handleLogin}
-          />
-        )} /> */}        
-        <Route
-          path="/categories/:id/jots/new"
-          render={(props) => (
-            <CreateJot
-              {...props}
-              currentUser={this.props.currentUser}
-              handleJotSubmit={this.handleJotSubmit}
-            />
-          )}
-        />
-
-        {/* <Route
-          path="/categories/:id/edit"
-          render={(props) => {
-            const { id } = props.match.params;
-            return (
-              <UpdateCategory
-                {...props}
-                currentUser={this.state.currentUser}
-                handleCategoryUpdate={this.handleCategoryUpdate}
-                categoryId={id}
-              />
-            );
-          }}
-        /> */}
       </div>
     );
   }

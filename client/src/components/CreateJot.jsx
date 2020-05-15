@@ -8,25 +8,43 @@ export default class CreateJot extends Component {
     }
   }
 
+  componentDidMount(){
+    console.log("Mounted")
+  }
   handleChange = (e) => {
-    const { value } = e.target;
+    const { name, value } = e.target;
     this.setState({
-      category: { name: value }
+      jot: {
+        ...this.state.jot,
+        [name]: value
+      }
     })
   }
 
+
   render() {
+    console.log("page loaded createJot")
     return (
       <form onSubmit={(e) => {
         e.preventDefault();
-        this.props.handleJotSubmit(this.props.currentUser.id, this.state.category);
-        this.props.history.push('/categories/:id');
+        this.props.handleJotSubmit(this.props.currentUser.id, this.props.categoryId, this.state.jot);
+        this.props.history.push(`/categories/${this.props.categoryId}`);
       }}>
-        <h3>Category Name:</h3>
+        <h3>Title:</h3>
         <input
+          name="title"
           type="text"
-          value={this.state.category.name}
-          // value={copy.name}
+          value={this.state.jot.title}
+          onChange={this.handleChange}
+        />
+        <h3>Notes:</h3>
+        
+        <textarea
+          name="note"
+          rows="4"
+          cols="50"
+          type="text"
+          value={this.state.jot.note}
           onChange={this.handleChange}
         />
         <button>Submit</button>
