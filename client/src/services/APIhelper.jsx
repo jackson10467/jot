@@ -77,8 +77,8 @@ export const getOneJot = async (user_id,categoryID,jotID) => {
   return resp.data;
 }
 
-export const postJot = async (user_id,categoryID,jotID,jotData) => {
-  const resp = await api.post(`/users/${user_id}/categorys/${categoryID}/jots/${jotID}`, jotData);
+export const postJot = async (user_id,categoryID,jotData) => {
+  const resp = await api.post(`/users/${user_id}/categorys/${categoryID}/jots/`, jotData);
   return resp.data;
 }
 

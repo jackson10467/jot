@@ -24,17 +24,6 @@ class JotsController < ApplicationController
   
   def update
     @user = User.find(params[:user_id])
-    @categories = Category.where(user_id: @current_user.id)
-    @category = @categories.find(params[:id])
-    
-    if @category.update(category_params)
-      render json: @category
-    else 
-      render json: @category.errors, status: :unprocessable_entity
-    end
-
-
-    @user = User.find(params[:user_id])
     @category = Category.find(params[:category_id])
     @jot = Jot.find(params[:id])
     
