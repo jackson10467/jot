@@ -81,7 +81,7 @@ export default class Main extends Component {
     const getJots = await getAllJots(user_id, category_id);
     this.setState({ jots: getJots });
   };
-  
+
   handleJotSubmit = async (user_id, category_id, jotData) => {
     const newJot = await postJot(user_id, category_id, jotData);
     // this.setState((prevState) => ({
@@ -91,7 +91,7 @@ export default class Main extends Component {
 
   handleJotUpdate = async (user_id, category_id, jotID, jotData) => {
     const updatedJot = await putJot(user_id, category_id, jotID, jotData);
-    this.readAllJots(this.props.currentUser.id, this.props.categoryId);
+ 
   };
 
 
