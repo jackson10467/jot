@@ -21,11 +21,12 @@ export default class EditJot extends Component {
 
   componentDidMount() {
     this.setFormData();
+    console.log(this.props.jotId)
   }
 
   setFormData = async () => {
     if (this.props.currentUser) {
-      const category = await getOneJot(this.props.currentUser.id, this.props.categoryId);
+      const category = await getOneJot(this.props.currentUser.id, this.props.categoryId, this.props.jotId);
       this.setState({
         jot:category
       })
@@ -36,7 +37,7 @@ export default class EditJot extends Component {
     return (
       <form onSubmit={(e) => {
         e.preventDefault();
-        this.props.handleCategoryUpdate(this.props.currentUser.id, this.props.categoryId, this.state.category);
+        this.props.handleJotUpdate(this.props.currentUser.id, this.props.categoryId, this.props.jotId,this.state.jot);
         this.props.history.push('/categories');
       }}>
         <h3>Update Jot Title:</h3>

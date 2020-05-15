@@ -12,7 +12,6 @@ class JotsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @categories = Category.where(user_id: @current_user.id)
-    @category = @categories.find(params[:id])
     @jot = Jot.find(params[:id])
     render json: @jot, :include => {:category => {:include => :user} },  status: :ok
   end
@@ -24,7 +23,7 @@ class JotsController < ApplicationController
   
   def update
     @user = User.find(params[:user_id])
-    @category = Category.find(params[:category_id])
+    # @category = Category.find(params[:category_id])
     @jot = Jot.find(params[:id])
     
     if @jot.update(jot_params)

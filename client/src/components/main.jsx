@@ -76,6 +76,12 @@ export default class Main extends Component {
       }),
     }));
   };
+
+  readAllJots = async (user_id, category_id) => {
+    const getJots = await getAllJots(user_id, category_id);
+    this.setState({ jots: getJots });
+  };
+  
   handleJotSubmit = async (user_id, category_id, jotData) => {
     const newJot = await postJot(user_id, category_id, jotData);
     // this.setState((prevState) => ({
@@ -188,12 +194,14 @@ export default class Main extends Component {
         <Route
             path="/categories/:id/jots/:jotid/edit"
             render={(props) => {
+              const { jotid } = props.match.params;
               const { id } = props.match.params;
               return (
                 <EditJot
                   {...props}
                   currentUser={this.state.currentUser}
-                  handleCategoryUpdate={this.handleJotUpdate}
+                  handleJotUpdate={this.handleJotUpdate}
+                  jotId={jotid}
                   categoryId={id}
                 />
               );
