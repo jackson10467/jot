@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import styled from "styled-components";
 import {
-  CardButton,
+  PostButton,
   FlexGrid,
   GridColumn,
   Card,
@@ -82,18 +82,19 @@ export default class ShowCategory extends Component {
                 <>
                 <GridColumn>
                   <div key={jot.id}>
-                     <Postit>
+                    <Postit>
                       <h3>{jot.title}</h3>
                       <p>{jot.note}</p>
-                      <Buttons>
-                        <CardButton onClick={() => {}}>
+                    </Postit> 
+                        <Buttons>
+                        <PostButton onClick={() => {}}>
                           <Link
                             to={`/categories/${this.props.categoryId}/jots/${jot.id}/edit`}
                           >
                             Edit
                           </Link>
-                        </CardButton>
-                        <CardButton
+                        </PostButton>
+                        <PostButton
                           onClick={() => {
                             this.handleJotDelete(
                               this.props.currentUser.id,
@@ -103,10 +104,8 @@ export default class ShowCategory extends Component {
                           }}
                         >
                             Delete
-                        </CardButton>
+                        </PostButton>
                         </Buttons>
-                        </Postit> 
-
                   </div>
                   </GridColumn>
                 </>

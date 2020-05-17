@@ -25,6 +25,22 @@ transition: all 0.2s ease-in;
   color:white;
 }
 `
+export const PostButton = styled.button`
+width: 50%;
+height: 40%;
+margin-top: 5vh;
+margin-right:15%;
+background-color: #ffffff;
+color: black;
+padding: 1em;
+font-family: "Montserrat", sans-serif;
+transition: all 0.2s ease-in;
+
+&:hover{
+  background-color:#307FE2;
+  color:white;
+}
+`
 export const Simg = styled.img`
   display:flex;
   justify-content: center;

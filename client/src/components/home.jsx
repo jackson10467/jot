@@ -8,6 +8,13 @@ const Container = styled.div`
   flex-direction:row;
   margin-top:5%;
   background-color:white;
+
+  @media (max-width:768px){
+    flex-direction:column;
+  }
+  @media (max-width:900px){
+    flex-direction:column;
+  }
 `
 const Nested = styled.div`
   display:flex;
