@@ -9,18 +9,25 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items:center;
-  width:100vw;
+  width:100%;
   flex-direction:row;
 `
 const Logo = styled.h1`
   font-size:70px;
   margin-left:5%;
   font-family: 'Londrina Outline', cursive;
+  @media (max-width:768px){
+    font-size:55px;
+  }
 `
 const Links = styled.div`
   display:flex;
   flex-flow:row nowrap;
   width:25%;
+
+  @media (max-width:768px){
+   width:100%;
+  }
 `
 
 const StyledLink = styled(Link)`
@@ -33,6 +40,13 @@ const StyledLink = styled(Link)`
   color:black;
   font-size:16px;
   font-family: 'Montserrat', sans-serif;
+
+  @media (max-width:768px){
+    margin:5%;
+  }
+  @media (max-width:900px){
+    margin:10%;
+  }
 `
 
 const StyledA = styled.a`
@@ -62,10 +76,12 @@ export default function Header(props) {
       {
         props.currentUser
         &&
+        <>
         <Links>
           <StyledLink to="/categories">Categories</StyledLink>
           <StyledLink onClick={props.handleLogout}>Logout</StyledLink>
-        </Links>
+          </Links>
+        </>
       }
 
     </StyledHeader>

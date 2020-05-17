@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root, html, body{
-    width:100%;
+    width:100vw;
   }
 
   body{

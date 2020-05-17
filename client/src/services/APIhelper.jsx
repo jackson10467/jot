@@ -77,8 +77,8 @@ export const getOneJot = async (user_id,categoryID,jotID) => {
   return resp.data;
 }
 
-export const postJot = async (user_id,categoryID,jotID,jotData) => {
-  const resp = await api.post(`/users/${user_id}/categorys/${categoryID}/jots/${jotID}`, jotData);
+export const postJot = async (user_id,categoryID,jotData) => {
+  const resp = await api.post(`/users/${user_id}/categorys/${categoryID}/jots/`, jotData);
   return resp.data;
 }
 
@@ -89,5 +89,9 @@ export const putJot = async (user_id,categoryID,jotID,jotData) => {
 
 export const destroyJot = async (user_id,category_id,jotID) => {
   const resp = await api.delete(`/users/${user_id}/categorys/${category_id}/jots/${jotID}`);
+  return resp;
+}
+export const destroyAllJots = async (user_id,category_id) => {
+  const resp = await api.delete(`/users/${user_id}/categorys/${category_id}/jots/`);
   return resp;
 }
