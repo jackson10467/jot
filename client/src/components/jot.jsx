@@ -18,8 +18,6 @@ export default class ShowJot extends Component {
 
   async componentDidMount() {
     if (this.props.categoryId != null && this.props.currentUser != null) {
-      this.setCategory(this.props.currentUser.id, this.props.categoryId);
-      this.readAllJots(this.props.currentUser.id, this.props.categoryId);
       this.setJot((this.props.currentUser.id, this.props.categoryId, this.props.jotId))
     }
   }
@@ -38,7 +36,7 @@ export default class ShowJot extends Component {
   }
 
   setJot = async (user_id, category_id, jotId) => {
-    const category = await this.getOneJot(user_id, category_id, jotId)
+    const jot = await getOneJot(user_id, category_id, jotId)
     this.setState({ jot:jot });
   };
 

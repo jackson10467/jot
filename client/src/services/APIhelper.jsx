@@ -91,3 +91,7 @@ export const destroyJot = async (user_id,category_id,jotID) => {
   const resp = await api.delete(`/users/${user_id}/categorys/${category_id}/jots/${jotID}`);
   return resp;
 }
+export const destroyAllJots = async (user_id,category_id) => {
+  const resp = await api.delete(`/users/${user_id}/categorys/${category_id}/jots/`);
+  return resp;
+}

@@ -13,7 +13,7 @@ import {
   getOneJot,
   postJot,
   putJot,
-  destroyJot,
+  destroyAllJots,
 } from "../services/APIhelper";
 import CreateJot from "./CreateJot";
 // import ShowJots from './jots';
@@ -22,8 +22,8 @@ import ShowCategories from "./categories";
 import ShowCategory from "./category";
 import CreateCategory from "./CreateCategory.jsx";
 import UpdateCategory from "./UpdateCategory.jsx";
-import ShowJot from "./jot.jsx";
 import EditJot from "./editJot.jsx";
+import Home from "./home.jsx"
 
 export default class Main extends Component {
   constructor(props) {
@@ -100,6 +100,13 @@ export default class Main extends Component {
   render() {
     return (
       <main>
+        
+        <Route
+          exact path="/"
+          render={(props) => (
+            <Home {...props} handleLogin={this.props.handleLogin} />
+          )}
+        />
         <Route
           path="/login"
           render={(props) => (
@@ -177,25 +184,8 @@ export default class Main extends Component {
             );
           }}
         />
-
         <Route
-            exact path="/categories/:id/jots/:jotid"
-            render={(props) => {
-              const { id } = props.match.params;
-              const { jotid } = props.match.params
-              return (
-                <ShowJot
-                  {...props}
-                  currentUser={this.state.currentUser}
-                  handleJotUpdate={this.handleJotUpdate}
-                  categoryId={id}
-                  jotID = {jotid}
-                />
-              );
-            }}
-          />
-        <Route
-            path="/categories/:id/jots/:jotid/edit"
+            exact path="/categories/:id/jots/:jotid/edit"
             render={(props) => {
               const { jotid } = props.match.params;
               const { id } = props.match.params;

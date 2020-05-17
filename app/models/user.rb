@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :categorys, dependent: :destroy
-  has_many :jots, through: :categorys
+  has_many :jots
 
 
   validates :username, presence: true, uniqueness: true

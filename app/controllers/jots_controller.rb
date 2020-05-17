@@ -38,12 +38,17 @@ class JotsController < ApplicationController
     @jot = Jot.find(params[:id])
     @jot.destroy
   end
+
+  def destroyAll
+    @jots = Jot.where(category_id:params[:categoryid])
+    @jots.destroy
+  end
   
   private
   
   def jot_params
     @user = User.find(params[:user_id])
-    params.require(:jot).permit(:title,:note).merge(:category_id => params[:category_id])
+    params.require(:jot).permit(:title,:note,:user_id).merge(:user_id => params[:user_id]).merge(:category_id => params[:category_id])
   end
 
   # don't forget that the request needs to be nested under jot

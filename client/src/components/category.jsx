@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import styled from "styled-components";
 import {
+  CardButton,
+  FlexGrid,
+  GridColumn,
+  Card,
+  Buttons,
+  Postit
+} from "./shared/comps";
+import {
   getOneCategory,
   getAllJots,
   getOneJot,
@@ -60,44 +68,55 @@ export default class ShowCategory extends Component {
     }));
   };
 
+  
+
   render() {
     const { jots } = this.state;
     return (
       <div>
         <h2>Jots</h2>
+        <FlexGrid>
+          {jots && (
+            <>
+              {jots.map((jot) => (
+                <>
+                <GridColumn>
+                  <div key={jot.id}>
+                     <Postit>
+                      <h3>{jot.title}</h3>
+                      <p>{jot.note}</p>
+                      <Buttons>
+                        <CardButton onClick={() => {}}>
+                          <Link
+                            to={`/categories/${this.props.categoryId}/jots/${jot.id}/edit`}
+                          >
+                            Edit
+                          </Link>
+                        </CardButton>
+                        <CardButton
+                          onClick={() => {
+                            this.handleJotDelete(
+                              this.props.currentUser.id,
+                              this.props.categoryId,
+                              jot.id
+                            );
+                          }}
+                        >
+                            Delete
+                        </CardButton>
+                        </Buttons>
+                        </Postit> 
+
+                  </div>
+                  </GridColumn>
+                </>
+              ))}
+            </>
+          )}
+        </FlexGrid>
         <Link to={`/categories/${this.props.categoryId}/jots/newJot`}>
-          <button>Create</button>
-        </Link>
-        {jots && (
-          <>
-            {jots.map((jot) => (
-              <>
-                <div key={jot.id} onClick={() => {
-                  <Link to={`/categories/${this.props.categoryId}/jots/${jot.id}`}></Link>
-                }}>
-                  <h3>{jot.title}</h3>
-                  <p>{jot.note}</p>
-                  <Link
-                    to={`/categories/${this.props.categoryId}/jots/${jot.id}/edit`}
-                  >
-                    <button>Edit</button>
-                  </Link>
-                  <button
-                    onClick={() => {
-                      this.handleJotDelete(
-                        this.props.currentUser.id,
-                        this.props.categoryId,
-                        jot.id
-                      );
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </>
-            ))}
-          </>
-        )}
+            <button>Create</button>
+          </Link>
       </div>
     );
   }
