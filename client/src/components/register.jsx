@@ -1,4 +1,42 @@
 import React, { Component } from 'react'
+import { StyledInput } from "./shared/comps"
+import styled from "styled-components";
+
+const Container = styled.div`
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction:column;
+`
+
+const Title = styled.div`
+  margin-bottom:2%;
+  font-weight:bold;
+  font-size: 30px;
+
+`
+
+const StyledButton = styled.button`
+  width: 50%;
+  height: 40%;
+  margin-top: 5vh;
+  background-color: #ffffff;
+  color: black;
+  padding: 1em;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.2s ease-in;
+
+  &:hover{
+    background-color:#307FE2;
+    color:white;
+  }
+`
+
+const Bottom = styled.div`
+display:flex;
+align-items:center;
+justify-content:center;
+`
 
 export default class Register extends Component {
   state = {
@@ -17,14 +55,15 @@ export default class Register extends Component {
   render() {
     const { username, email, password } = this.state;
     return (
-      <form onSubmit={(e) => {
+      <Container>
+        <Title>REGISTER</Title>
+        <form onSubmit={(e) => {
         e.preventDefault();
         this.props.handleRegister(this.state);
         this.props.history.push('/');
       }}>
-        <h3>Register</h3>
-        <label htmlFor="username">username:</label>
-        <input
+        <label htmlFor="username">Username:</label>
+        <StyledInput
           id="username"
           type="text"
           name="username"
@@ -32,8 +71,8 @@ export default class Register extends Component {
           onChange={this.handleChange}
         />
         <br />
-        <label htmlFor="email">email:</label>
-        <input
+        <label htmlFor="email">Email:</label>
+        <StyledInput
           id="email"
           type="text"
           name="email"
@@ -41,17 +80,20 @@ export default class Register extends Component {
           onChange={this.handleChange}
         />
         <br />
-        <label htmlFor="password">password:</label>
-        <input
+        <label htmlFor="password">Password:</label>
+        <StyledInput
           id="password"
           type="password"
           name="password"
           value={password}
           onChange={this.handleChange}
         />
-        <br />
-        <button>Submit</button>
-      </form>
+          <br />
+          <Bottom>
+            <StyledButton>Submit</StyledButton>
+          </Bottom>
+        </form>
+        </Container>
     )
   }
 }

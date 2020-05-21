@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CardButton, FlexGrid, GridColumn, Card, Buttons } from "./shared/comps";
 
+const H2 = styled.h2`
+  text-align:center;
+  font-weight:bold;
+  font-size:30px;
+` 
+
 export default function ShowCategories(props) {
   return (
     <div>
-      <h2>Categories</h2>
+      <H2> Categories</H2>
       <FlexGrid>
         {props.categories.map((category) => (
           <React.Fragment key={category.id}>

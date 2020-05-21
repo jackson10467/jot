@@ -26,8 +26,17 @@ const StyledButton = styled.button`
   }
 `
 
+const Title = styled.div`
+  margin-bottom:2%;
+  font-weight:bold;
+  font-size: 30px;
+
+`
+
 const Bottom = styled.div`
 display:flex;
+align-items:center;
+justify-content:center;
 `
 
 export default class Login extends Component {
@@ -48,7 +57,7 @@ export default class Login extends Component {
     const { username, email, password } = this.state;
     return (
       <Container>
-      <h3>Login</h3>
+      <Title>Login</Title>
       <form onSubmit={(e) => {
         e.preventDefault();
         this.props.handleLogin(this.state);
@@ -82,7 +91,6 @@ export default class Login extends Component {
         />
         <br />
         <Bottom>
-        <Link to='/register'>register</Link>
         <StyledButton>Submit</StyledButton>
         </Bottom>
         </form>
